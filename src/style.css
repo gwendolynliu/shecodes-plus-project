@@ -167,3 +167,14 @@ footer {
 .fahrenheit:hover {
   color: #ff8364;
 }
+
+.endnote {
+  color: #edf7fa;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 1.3px;
+}
+
+.github {
+  color: #ff8364;
+}
