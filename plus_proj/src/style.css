@@ -1,0 +1,169 @@
+body {
+  background: #5f6caf;
+  font-family: "Oswald", sans-serif;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  padding: 5px;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+header {
+  color: #edf7fa;
+}
+
+.forecast i {
+  margin: 10px auto;
+  font-size: 24px;
+}
+
+.container {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.weather-app {
+  background-image: url(../image/cloudy.jpg);
+  background-position: center;
+  background-size: 1000px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.temp {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.city {
+  font-size: 3rem;
+  margin-bottom: 0;
+}
+
+header .temp-list {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.time {
+  font-size: 1.3rem;
+  letter-spacing: 1.1px;
+}
+
+.curr-weather {
+  font-size: 1.3rem;
+  letter-spacing: 1.1px;
+}
+
+.col-width-200 {
+  width: 200px;
+  line-height: 1;
+  letter-spacing: 1.1px;
+}
+
+.col-width-160 {
+  width: 160px;
+  text-align: left;
+  padding: 0;
+  position: relative;
+  left: -5px;
+  bottom: -11px;
+  letter-spacing: 1.3px;
+}
+
+.col-width-320 {
+  width: 320px;
+  word-wrap: break-word;
+  text-align: right;
+  line-height: 1.4;
+  position: relative;
+  bottom: -5px;
+}
+
+.forecast {
+  padding-top: 20px;
+  margin: 70px auto 40px auto;
+  text-align: center;
+  color: #edf7fa;
+  font-weight: 500;
+}
+
+.unit {
+  padding: 10px;
+  border-radius: 10px;
+}
+.unit:hover {
+  background-color: #ff8364;
+}
+
+.date {
+  font-size: 1.1rem;
+  letter-spacing: 1.1px;
+}
+
+#search-bar {
+  background-color: transparent;
+  color: #edf7fa;
+}
+
+#search-bar::placeholder {
+  color: #edf7fa;
+}
+
+#search-bar:hover {
+  color: #edf7fa;
+}
+
+#search-bar:focus {
+  border-color: #ff8364;
+  box-shadow: 0 0 5px #ff8364;
+}
+
+.btn {
+  background-color: transparent;
+  border: 1px solid #edf7fa;
+}
+
+.btn:hover {
+  background-color: #ff8364;
+  border-color: #ff8364;
+}
+
+.btn:active:focus {
+  background-color: #ff8364;
+  border-color: #ff8364;
+}
+
+footer {
+  padding-top: 20px;
+  display: block;
+  text-align: right;
+}
+
+.curr_loc {
+  color: #edf7fa;
+  padding-right: 10px;
+  font-size: 24px;
+}
+
+.curr_loc:hover {
+  color: #ff8364;
+}
+
+.fahrenheit {
+  color: #edf7fa;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.fahrenheit:hover {
+  color: #ff8364;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Oswald:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Merienda:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script
+      src="https://kit.fontawesome.com/7249918d30.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app">
+        <header>
+          <div class="row">
+            <div class="col-width-200">
+              <h1 class="temp">30°C</h1>
+              <div class="temp-list">
+                <span class="high">H: 32°</span
+                ><span class="low"> &nbsp L: 25°</span>
+              </div>
+            </div>
+            <div class="col-width-160">
+              <ul>
+                <li>Precipitation: 24%</li>
+                <li>Humidity: 77%</li>
+                <li>Wind: 14km/h</li>
+                <li>Air Quality: Excellent</li>
+              </ul>
+            </div>
+            <div class="col-width-320">
+              <h1 class="city">GUANGZHOU</h1>
+              <div class="time">Wednesday 17:28</div>
+              <div class="curr-weather">Mostly Cloudy</div>
+            </div>
+          </div>
+        </header>
+        <section>
+          <div class="forecast row">
+            <div class="col unit">
+              <div class="date">THU</div>
+              <i class="fa-solid fa-cloud-showers-heavy"></i>
+              <div class="temp-list">
+                <span class="high">33°</span><span class="low"> / 26°</span>
+              </div>
+            </div>
+            <div class="col unit">
+              <div class="date">FRI</div>
+              <i class="fa-solid fa-cloud"></i>
+              <div class="temp-list">
+                <span class="high">35°</span><span class="low"> / 23°</span>
+              </div>
+            </div>
+            <div class="col unit">
+              <div class="date">SAT</div>
+              <i class="fa-solid fa-cloud-sun"></i>
+              <div class="temp-list">
+                <span class="high">34°</span><span class="low"> / 26°</span>
+              </div>
+            </div>
+            <div class="col unit">
+              <div class="date">SUN</div>
+              <i class="fa-solid fa-sun"></i>
+              <div class="temp-list">
+                <span class="high">35°</span><span class="low"> / 26°</span>
+              </div>
+            </div>
+            <div class="col unit">
+              <div class="date">MON</div>
+              <i class="fa-solid fa-sun"></i>
+              <div class="temp-list">
+                <span class="high">35°</span><span class="low"> / 26°</span>
+              </div>
+            </div>
+          </div>
+          <br />
+          <form id="search-form">
+            <div class="row">
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Type a city ..."
+                  class="form-control"
+                  id="search-bar"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary w-100"
+                />
+              </div>
+            </div>
+          </form>
+        </section>
+        <footer>
+          <i class="curr_loc fa-solid fa-location-dot"></i>
+          <a href="#" class="fahrenheit">°F</a>
+        </footer>
+      </div>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>
