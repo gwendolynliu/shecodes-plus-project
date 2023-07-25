@@ -28,7 +28,6 @@ header {
 }
 
 .weather-app {
-  background-image: url(../image/clear_sky.jpg);
   background-position: center;
   background-size: 1000px;
   max-width: 720px;
@@ -172,4 +171,8 @@ footer {
 
 .github {
   color: #ff8364;
+}
+
+.forecast-icon {
+  width: 60px;
 }

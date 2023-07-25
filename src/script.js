@@ -1,30 +1,71 @@
-// adjust date
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let curr_time = document.querySelector(".time");
-let day = days[now.getDay()];
-let hour = now.getHours();
-if (hour < 10) {
-  hour = ("0" + hour).slice(-2);
+function displayDate() {
+  let now = new Date();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let curr_time = document.querySelector(".time");
+  let day = days[now.getDay()];
+  let hour = now.getHours();
+  if (hour < 10) {
+    hour = ("0" + hour).slice(-2);
+  }
+  let minute = now.getMinutes();
+  if (minute < 10) {
+    minute = ("0" + minute).slice(-2);
+  }
+  curr_time.innerHTML = `${day} ${hour}:${minute}`;
 }
-let minute = now.getMinutes();
-if (minute < 10) {
-  minute = ("0" + minute).slice(-2);
-}
-curr_time.innerHTML = `${day} ${hour}:${minute}`;
 
-//
-// search engine - change main current weather
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector(".weather-forcast");
+
+  let forecastHTML = `<div class="forecast row">`;
+
+  forecast.forEach(function (day, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML += `<div class="col unit">
+  <div class="date">${formatDay(day.time)}</div>
+  <img class="forecast-icon" src=${day.condition.icon_url} alt=${
+        day.condition.icon
+      }>
+  <div class="temp-list">
+    <span class="high">${Math.round(day.temperature.maximum)}°</span>
+    <span class="low"> / ${Math.round(day.temperature.minimum)}°</span>
+  </div>
+  </div>`;
+    }
+  });
+
+  forecastHTML += `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coords) {
+  let apiKey = "2b32f63e3t5dbc4a0f214f150o0d2cf2";
+  let units = "metric";
+
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/forecast";
+  let apiUrl = `${apiEndpoint}?lon=${coords.lon}&lat=${coords.lat}&key=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTempterature(response) {
-  console.log(response);
   let temp = Math.round(response.data.main.temp);
   let currTemp = document.querySelector("header .temp");
   currTemp.innerHTML = `${temp}°C`;
@@ -84,21 +125,21 @@ function showTempterature(response) {
     document.getElementById("weather-background").style.backgroundImage =
       "url(./image/snow.jpg)";
   }
+
+  getForecast(response.data.coord);
 }
 
-let searchCity = document.querySelector("#search-form");
 function changeCity(event) {
   event.preventDefault();
 
   let newCity = document.querySelector("#search-bar").value;
 
-  let apiKey = "1dbf926d3b4417bf379db7043bec1047";
+  let apiKey = "4c9b53e4f8f5eb00df5915bdca340605";
   let units = "metric";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiEndpoint}?q=${newCity}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTempterature);
 }
-searchCity.addEventListener("submit", changeCity);
 
 // change temp in between celcius and farenheit
 function calcFahr(celsius) {
@@ -175,12 +216,6 @@ function changeTemp(event) {
   clicks += 1;
 }
 
-let clicks = 0;
-
-let tempF = document.querySelector(".fahrenheit");
-tempF.addEventListener("click", changeTemp);
-
-//
 function showLoc(location) {
   let lat = location.coords.latitude;
   let lon = location.coords.longitude;
@@ -197,5 +232,23 @@ function getGeoLoc() {
   navigator.geolocation.getCurrentPosition(showLoc);
 }
 
+function defaultDisplay(city) {
+  let apiKey = "4c9b53e4f8f5eb00df5915bdca340605";
+  let units = "metric";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showTempterature);
+}
+
+let searchCity = document.querySelector("#search-form");
+searchCity.addEventListener("submit", changeCity);
+
+let clicks = 0;
+let tempF = document.querySelector(".fahrenheit");
+tempF.addEventListener("click", changeTemp);
+
 let currLoc = document.querySelector("footer .curr_loc");
 currLoc.addEventListener("click", getGeoLoc);
+
+defaultDisplay("Guangzhou");
+displayDate();
