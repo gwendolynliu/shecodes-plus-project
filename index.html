@@ -27,25 +27,29 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☁️</text></svg>"
+    />
   </head>
   <body>
     <div class="container">
-      <div class="weather-app">
+      <div class="weather-app" id="weather-background">
         <header>
           <div class="row">
             <div class="col-width-200">
               <h1 class="temp">30°C</h1>
-              <div class="temp-list">
-                <span class="high">H: 32°</span
-                ><span class="low"> &nbsp L: 25°</span>
-              </div>
             </div>
             <div class="col-width-160">
               <ul>
-                <li>Precipitation: 24%</li>
-                <li>Humidity: 77%</li>
-                <li>Wind: 14km/h</li>
-                <li>Air Quality: Excellent</li>
+                <li>
+                  <div class="temp-list">
+                    <span class="high">H: 32°</span
+                    ><span class="low"> &nbsp L: 25°</span>
+                  </div>
+                </li>
+                <li>Humidity: <span id="humidity">77</span>%</li>
+                <li>Wind: <span id="wind-speed">14</span>km/h</li>
               </ul>
             </div>
             <div class="col-width-320">

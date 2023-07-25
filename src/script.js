@@ -24,6 +24,7 @@ curr_time.innerHTML = `${day} ${hour}:${minute}`;
 //
 // search engine - change main current weather
 function showTempterature(response) {
+  console.log(response);
   let temp = Math.round(response.data.main.temp);
   let currTemp = document.querySelector("header .temp");
   currTemp.innerHTML = `${temp}°C`;
@@ -37,15 +38,52 @@ function showTempterature(response) {
   let tempMin = Math.round(response.data.main.temp_min);
   let currTempLow = document.querySelector("header .low");
   currTempLow.innerHTML = ` &nbsp L: ${tempMin}°`;
-}
 
-//
-// change city & main temperature according to search engine
-function changeDisplayedCity(response) {
+  // change displayed city
   let city = response.data.name;
-
   let currCity = document.querySelector(".city");
   currCity.innerHTML = city.toUpperCase();
+
+  // change description
+  let currDescription = document.querySelector("header .curr-weather");
+  currDescription.innerHTML = response.data.weather[0].description;
+
+  // change humidity, rain, wind
+  let currHumidity = document.querySelector("#humidity");
+  currHumidity.innerHTML = response.data.main.humidity;
+
+  let currWind = document.querySelector("#wind-speed");
+  currWind.innerHTML = Math.round(response.data.wind.speed);
+
+  // change background image
+  if (response.data.weather[0].main === "Clear") {
+    document.getElementById("weather-background").style.backgroundImage =
+      "url(./image/clear_sky.jpg)";
+  }
+  if (response.data.weather[0].main === "Clouds") {
+    document.getElementById("weather-background").style.backgroundImage =
+      "url(./image/cloudy.jpg)";
+  }
+  if (response.data.weather[0].icon === "50d") {
+    document.getElementById("weather-background").style.backgroundImage =
+      "url(./image/foggy.jpg)";
+  }
+  if (response.data.weather[0].main === "Thunderstorm") {
+    document.getElementById("weather-background").style.backgroundImage =
+      "url(./image/thunder.jpg)";
+  }
+  if (response.data.weather[0].main === "Drizzle") {
+    document.getElementById("weather-background").style.backgroundImage =
+      "url(./image/drizzle.jpg)";
+  }
+  if (response.data.weather[0].main === "Rain") {
+    document.getElementById("weather-background").style.backgroundImage =
+      "url(./image/drizzle.jpg)";
+  }
+  if (response.data.weather[0].main === "Snow") {
+    document.getElementById("weather-background").style.backgroundImage =
+      "url(./image/snow.jpg)";
+  }
 }
 
 let searchCity = document.querySelector("#search-form");
@@ -59,7 +97,6 @@ function changeCity(event) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiEndpoint}?q=${newCity}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTempterature);
-  axios.get(apiUrl).then(changeDisplayedCity);
 }
 searchCity.addEventListener("submit", changeCity);
 
@@ -144,13 +181,6 @@ let tempF = document.querySelector(".fahrenheit");
 tempF.addEventListener("click", changeTemp);
 
 //
-// get geoposition - display current weather
-function changeLoc(response) {
-  let city = response.data.name;
-  let currCity = document.querySelector(".city");
-  currCity.innerHTML = city.toUpperCase();
-}
-
 function showLoc(location) {
   let lat = location.coords.latitude;
   let lon = location.coords.longitude;
@@ -160,7 +190,6 @@ function showLoc(location) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiEndpoint}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
 
-  axios.get(apiUrl).then(changeLoc);
   axios.get(apiUrl).then(showTempterature);
 }
 
